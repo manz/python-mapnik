@@ -61,9 +61,9 @@ def bootstrap_env():
         env = {'ICU_DATA':'/usr/local/share/icu/'}
     """
     if os.path.exists(os.path.join(os.path.dirname(__file__),'mapnik_settings.py')):
-        from mapnik_settings import env
-        process_keys = os.environ.keys()
-        for key, value in env.items():
+        from .mapnik_settings import env
+        process_keys = list(os.environ.keys())
+        for key, value in list(env.items()):
             if key not in process_keys:
                 os.environ[key] = value
 
@@ -71,7 +71,7 @@ bootstrap_env()
 
 from _mapnik import *
 
-import printing
+from . import printing
 printing.renderer = render
 
 # The base Boost.Python class
@@ -302,7 +302,7 @@ def _add_symbol_method_to_symbolizers(vars=globals()):
     def symbol_for_cls(self):
         return getattr(self,self.type())()
 
-    for name, obj in vars.items():
+    for name, obj in list(vars.items()):
         if name.endswith('Symbolizer') and not name.startswith('_'):
             if name == 'Symbolizer':
                 symbol = symbol_for_cls
@@ -731,11 +731,11 @@ class PythonDatasource(object):
             f = Feature(ctx, idx)
             geom, attrs = feat
             f.add_geometries_from_wkb(geom)
-            for k, v in attrs.iteritems():
+            for k, v in attrs.items():
                 f[k] = v
             return f
 
-        return itertools.imap(make_it, features, itertools.count(1))
+        return map(make_it, features, itertools.count(1))
 
     @classmethod
     def wkt_features(cls, keys, features):
@@ -764,11 +764,11 @@ class PythonDatasource(object):
             f = Feature(ctx, idx)
             geom, attrs = feat
             f.add_geometries_from_wkt(geom)
-            for k, v in attrs.iteritems():
+            for k, v in attrs.items():
                 f[k] = v
             return f
 
-        return itertools.imap(make_it, features, itertools.count(1))
+        return map(make_it, features, itertools.count(1))
 
 class _TextSymbolizer(TextSymbolizer,_injector):
     @property
@@ -1048,7 +1048,7 @@ def mapnik_version_from_string(version_string):
 def register_plugins(path=None):
     """Register plugins located by specified path"""
     if not path:
-        if os.environ.has_key('MAPNIK_INPUT_PLUGINS_DIRECTORY'):
+        if 'MAPNIK_INPUT_PLUGINS_DIRECTORY' in os.environ:
             path = os.environ.get('MAPNIK_INPUT_PLUGINS_DIRECTORY')
         else:
             from paths import inputpluginspath
@@ -1058,7 +1058,7 @@ def register_plugins(path=None):
 def register_fonts(path=None,valid_extensions=['.ttf','.otf','.ttc','.pfa','.pfb','.ttc','.dfont','.woff']):
     """Recursively register fonts using path argument as base directory"""
     if not path:
-       if os.environ.has_key('MAPNIK_FONT_DIRECTORY'):
+       if 'MAPNIK_FONT_DIRECTORY' in os.environ:
            path = os.environ.get('MAPNIK_FONT_DIRECTORY')
        else:
            from paths import fontscollectionpath

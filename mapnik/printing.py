@@ -393,7 +393,7 @@ class PDFPrinter:
             o=pyPdf.PdfFileWriter()
 
             # preserve OCProperties at document root if we have one
-            if i.trailer['/Root'].has_key(pyPdf.generic.NameObject('/OCProperties')):
+            if pyPdf.generic.NameObject('/OCProperties') in i.trailer['/Root']:
                 o._root.getObject()[pyPdf.generic.NameObject('/OCProperties')] = i.trailer['/Root'].getObject()[pyPdf.generic.NameObject('/OCProperties')]
 
             for p in i.pages:
@@ -911,7 +911,7 @@ class PDFPrinter:
                                         else:
                                             rule_text += str(r.filter)
                         active_rules = tuple(active_rules)
-                        if added_styles.has_key(active_rules):
+                        if active_rules in added_styles:
                             continue
 
                         added_styles[active_rules] = (f,rule_text)
@@ -920,7 +920,7 @@ class PDFPrinter:
                     else:
                         added_styles[l] = (None,None)
 
-                legend_items = added_styles.keys()
+                legend_items = list(added_styles.keys())
                 legend_items.sort()
                 for li in legend_items:
                     if True:
@@ -942,7 +942,7 @@ class PDFPrinter:
                                     try:
                                         sym.avoid_edges=False
                                     except:
-                                        print "**** Cant set avoid edges for rule", r.name
+                                        print("**** Cant set avoid edges for rule", r.name)
                                 if r.min_scale <= m.scale_denominator() and m.scale_denominator() < r.max_scale:
                                     lerule = r
                                     lerule.min_scale = 0
@@ -1014,7 +1014,7 @@ class PDFPrinter:
                             e=self.write_text(ctx, rule_text, m2pt(cwidth-legend_item_box_size[0]-0.005), 6)
                             legend_text_size += e[3]
                             ctx.rel_move_to(0,e[3])
-                        if attribution.has_key(layer_title):
+                        if layer_title in attribution:
                             e=self.write_text(ctx, attribution[layer_title], m2pt(cwidth-legend_item_box_size[0]-0.005), 6, fill_color=(0.5,0.5,0.5))
                             legend_text_size += e[3]
 
