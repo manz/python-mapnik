@@ -10,7 +10,7 @@ from glob import glob
 default_logging_severity = mapnik.logger.get_severity()
 
 def setup():
-    mapnik.logger.set_severity(mapnik.severity_type.None)
+    mapnik.logger.set_severity(mapnik.severity_type.none)
     # All of the paths used are relative, if we run the tests
     # from another directory we need to chdir()
     os.chdir(execution_path('.'))

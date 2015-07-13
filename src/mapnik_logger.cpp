@@ -52,10 +52,10 @@ void export_logger()
         ;
 
     enum_<mapnik::logger::severity_type>("severity_type")
-        .value("Debug", logger::debug)
-        .value("Warn", logger::warn)
-        .value("Error", logger::error)
-        .value("None", logger::none)
+        .value("debug", logger::debug)
+        .value("warn", logger::warn)
+        .value("error", logger::error)
+        .value("none", logger::none)
         ;
 
     class_<logger,bases<singleton<logger,CreateStatic> >,
