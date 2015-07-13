@@ -78,11 +78,8 @@ void export_featureset()
     class_<mapnik::Featureset,std::shared_ptr<mapnik::Featureset>,
         boost::noncopyable>("Featureset",no_init)
         .def("__iter__",pass_through)
-    #if PY_VERSION_HEX >= 0x03000000
         .def("__next__", next)
-    #else
         .def("next",next)
-    #endif
         .add_property("features",features,
                       "The list of features.\n"
                       "\n"
