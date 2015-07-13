@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
+
 import glob
 from nose.tools import eq_,raises
 from utilities import execution_path
@@ -35,9 +37,9 @@ if 'csv' in mapnik.DatasourceCache.plugin_names():
             if visual:
                 try:
                     mapnik.Datasource(type='csv',file=csv,strict=True)
-                    print '\x1b[33mfailed: should have thrown\x1b[0m',csv
+                    print('\x1b[33mfailed: should have thrown\x1b[0m',csv)
                 except Exception:
-                    print '\x1b[1;32m✓ \x1b[0m', csv
+                    print('\x1b[1;32m✓ \x1b[0m', csv)
 
     def test_good_files(visual=False):
         good_files = glob.glob("../data/csv/*.*")
@@ -49,9 +51,9 @@ if 'csv' in mapnik.DatasourceCache.plugin_names():
             if visual:
                 try:
                     mapnik.Datasource(type='csv',file=csv)
-                    print '\x1b[1;32m✓ \x1b[0m', csv
+                    print('\x1b[1;32m✓ \x1b[0m', csv)
                 except Exception, e:
-                    print '\x1b[33mfailed: should not have thrown\x1b[0m',csv,str(e)
+                    print('\x1b[33mfailed: should not have thrown\x1b[0m',csv,str(e))
 
     def test_lon_lat_detection(**kwargs):
         ds = get_csv_ds('lon_lat.csv')

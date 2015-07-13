@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from __future__ import print_function
 
 from nose.tools import eq_, raises
 from utilities import execution_path, run_all
@@ -156,7 +157,7 @@ if 'sqlite' in mapnik.DatasourceCache.plugin_names():
                 eq_(feature[str(k)],v)
             except:
                 #import pdb;pdb.set_trace()
-                print 'invalid key/v %s/%s for: %s' % (k,v,feature)
+                print('invalid key/v %s/%s for: %s' % (k,v,feature))
     
     test_attachdb_with_sql_join.requires_data = True
 

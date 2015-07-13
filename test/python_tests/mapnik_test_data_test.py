@@ -1,6 +1,8 @@
 ﻿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
+
 from utilities import execution_path, run_all
 import os, mapnik
 from glob import glob
@@ -35,14 +37,14 @@ def test_opening_data():
         for filepath in files:
             ext = os.path.splitext(filepath)[1]
             if plugin_mapping.get(ext):
-                #print 'testing opening %s' % filepath
+                #print('testing opening %s' % filepath)
                 if 'topo' in filepath:
                     kwargs = {'type': 'ogr','file': filepath}
                     kwargs['layer_by_index'] = 0
                     try:
                         mapnik.Datasource(**kwargs)
                     except Exception, e:
-                        print 'could not open, %s: %s' % (kwargs,e)
+                        print('could not open, %s: %s' % (kwargs,e))
                 else:
                    for plugin in plugin_mapping[ext]:
                       kwargs = {'type': plugin,'file': filepath}
@@ -51,9 +53,9 @@ def test_opening_data():
                       try:
                           mapnik.Datasource(**kwargs)
                       except Exception, e:
-                          print 'could not open, %s: %s' % (kwargs,e)
+                          print('could not open, %s: %s' % (kwargs,e))
             #else:
-            #    print 'skipping opening %s' % filepath
+            #    print('skipping opening %s' % filepath)
 
 if __name__ == "__main__":
     setup()

@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
+
 import os, mapnik
 from nose.tools import raises,eq_
 from utilities import execution_path, run_all
@@ -73,14 +75,14 @@ if mapnik.has_webp():
                 expected = gen_filepath('blank',opt)
                 actual = os.path.join(tmp_dir,os.path.basename(expected))
                 if generate or not os.path.exists(expected):
-                    print 'generating expected image %s' % expected
+                    print('generating expected image %s' % expected)
                     im.save(expected,opt)
                 im.save(actual,opt)
                 try:
                     expected_bytes = mapnik.Image.open(expected).tostring()
                 except RuntimeError:
                     # this will happen if libweb is old, since it cannot open images created by more recent webp
-                    print 'warning, cannot open webp expected image (your libwebp is likely too old)'
+                    print('warning, cannot open webp expected image (your libwebp is likely too old)')
                     continue
                 if mapnik.Image.open(actual).tostring() != expected_bytes:
                     fails.append('%s (actual) not == to %s (expected)' % (actual,expected))
@@ -91,14 +93,14 @@ if mapnik.has_webp():
                 expected = gen_filepath('solid',opt)
                 actual = os.path.join(tmp_dir,os.path.basename(expected))
                 if generate or not os.path.exists(expected):
-                    print 'generating expected image %s' % expected
+                    print('generating expected image %s' % expected)
                     im.save(expected,opt)
                 im.save(actual,opt)
                 try:
                     expected_bytes = mapnik.Image.open(expected).tostring()
                 except RuntimeError:
                     # this will happen if libweb is old, since it cannot open images created by more recent webp
-                    print 'warning, cannot open webp expected image (your libwebp is likely too old)'
+                    print('warning, cannot open webp expected image (your libwebp is likely too old)')
                     continue
                 if mapnik.Image.open(actual).tostring() != expected_bytes:
                     fails.append('%s (actual) not == to %s (expected)' % (actual,expected))
@@ -108,21 +110,21 @@ if mapnik.has_webp():
                 expected = gen_filepath('aerial_rgba',opt)
                 actual = os.path.join(tmp_dir,os.path.basename(expected))
                 if generate or not os.path.exists(expected):
-                    print 'generating expected image %s' % expected
+                    print('generating expected image %s' % expected)
                     im.save(expected,opt)
                 im.save(actual,opt)
                 try:
                     expected_bytes = mapnik.Image.open(expected).tostring()
                 except RuntimeError:
                     # this will happen if libweb is old, since it cannot open images created by more recent webp
-                    print 'warning, cannot open webp expected image (your libwebp is likely too old)'
+                    print('warning, cannot open webp expected image (your libwebp is likely too old)')
                     continue
                 if mapnik.Image.open(actual).tostring() != expected_bytes:
                     fails.append('%s (actual) not == to %s (expected)' % (actual,expected))
             # disabled to avoid failures on ubuntu when using old webp packages
             #eq_(fails,[],'\n'+'\n'.join(fails))
         except RuntimeError, e:
-            print e
+            print(e)
 
     def test_transparency_levels():
         try:
@@ -152,11 +154,11 @@ if mapnik.has_webp():
                 expected_bytes = mapnik.Image.open(expected).tostring(format)
             except RuntimeError:
                 # this will happen if libweb is old, since it cannot open images created by more recent webp
-                print 'warning, cannot open webp expected image (your libwebp is likely too old)'
+                print('warning, cannot open webp expected image (your libwebp is likely too old)')
                 return
             eq_(t0_len,len(expected_bytes))
         except RuntimeError, e:
-            print e
+            print(e)
 
 
 if __name__ == "__main__":

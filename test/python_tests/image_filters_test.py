@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from __future__ import print_function
 
 from nose.tools import eq_
 from utilities import execution_path, run_all
@@ -51,7 +52,7 @@ if 'shape' in mapnik.DatasourceCache.plugin_names():
             expected = 'images/style-image-filter/' + filename + '.png'
             im.save(actual,"png32")
             if not os.path.exists(expected) or os.environ.get('UPDATE'):
-                print 'generating expected test image: %s' % expected
+                print('generating expected test image: %s' % expected)
                 im.save(expected,'png32')
             expected_im = mapnik.Image.open(expected)
             # compare them

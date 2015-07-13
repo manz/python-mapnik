@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from __future__ import print_function
+
 from nose.tools import eq_, raises
 from utilities import execution_path, run_all
 import os, mapnik
@@ -12,7 +14,7 @@ def setup():
 
 def test_that_datasources_exist():
     if len(mapnik.DatasourceCache.plugin_names()) == 0:
-        print '***NOTICE*** - no datasource plugins have been loaded'
+        print('***NOTICE*** - no datasource plugins have been loaded')
 
 # adapted from raster_symboliser_test#test_dataraster_query_point
 @raises(RuntimeError)

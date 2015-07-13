@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from __future__ import print_function
+
 from nose.tools import eq_,raises
 import atexit
 from utilities import execution_path, run_all
@@ -40,7 +42,7 @@ def psql_can_connect():
         call('psql %s -c "select postgis_version()"' % POSTGIS_TEMPLATE_DBNAME)
         return True
     except RuntimeError:
-        print 'Notice: skipping postgis tests (connection)'
+        print('Notice: skipping postgis tests (connection)')
         return False
 
 def shp2pgsql_on_path():
@@ -52,7 +54,7 @@ def shp2pgsql_on_path():
         call('shp2pgsql')
         return True
     except RuntimeError:
-        print 'Notice: skipping postgis tests (shp2pgsql)'
+        print('Notice: skipping postgis tests (shp2pgsql)')
         return False
 
 def createdb_and_dropdb_on_path():
@@ -65,7 +67,7 @@ def createdb_and_dropdb_on_path():
         call('dropdb --help')
         return True
     except RuntimeError:
-        print 'Notice: skipping postgis tests (createdb/dropdb)'
+        print('Notice: skipping postgis tests (createdb/dropdb)')
         return False
 
 insert_table_1 = """

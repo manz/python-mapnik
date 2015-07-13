@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
+
 import os, mapnik
 from timeit import Timer, time
 from utilities import execution_path, run_all
@@ -115,7 +117,7 @@ def do_encoding():
         elapsed = str(s[2])[:6]
         name = s[3]
         size = s[4]
-        print 'min: %sms | avg: %sms | total: %sms | len: %s <-- %s' % (min_,avg,elapsed,size,name)
+        print('min: %sms | avg: %sms | total: %sms | len: %s <-- %s' % (min_,avg,elapsed,size,name))
 
 
 if __name__ == "__main__":

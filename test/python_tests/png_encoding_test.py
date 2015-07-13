@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
+
 import os, mapnik
 from nose.tools import eq_
 from utilities import execution_path, run_all
@@ -50,7 +52,7 @@ if mapnik.has_png():
             expected = gen_filepath('solid',opt)
             actual = os.path.join(tmp_dir,os.path.basename(expected))
             if generate or not os.path.exists(expected):
-              print 'generating expected image %s' % expected
+              print('generating expected image %s' % expected)
               im.save(expected,opt)
             else:
               im.save(actual,opt)
@@ -64,7 +66,7 @@ if mapnik.has_png():
             expected = gen_filepath('blank',opt)
             actual = os.path.join(tmp_dir,os.path.basename(expected))
             if generate or not os.path.exists(expected):
-              print 'generating expected image %s' % expected
+              print('generating expected image %s' % expected)
               im.save(expected,opt)
             else:
               im.save(actual,opt)
@@ -78,7 +80,7 @@ if mapnik.has_png():
             expected = gen_filepath('aerial_rgba',opt)
             actual = os.path.join(tmp_dir,os.path.basename(expected))
             if generate or not os.path.exists(expected):
-              print 'generating expected image %s' % expected
+              print('generating expected image %s' % expected)
               im.save(expected,opt)
             else:
               im.save(actual,opt)
