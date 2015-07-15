@@ -5,7 +5,7 @@ from __future__ import print_function
 from nose.tools import eq_,assert_almost_equal
 import atexit
 import time
-from utilities import execution_path, run_all, side_by_side_image
+from .utilities import execution_path, run_all, side_by_side_image
 from subprocess import Popen, PIPE
 import os, mapnik
 import sys

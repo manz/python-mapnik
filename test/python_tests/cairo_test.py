@@ -6,7 +6,7 @@ import os
 import shutil
 import mapnik
 from nose.tools import eq_
-from utilities import execution_path, run_all
+from .utilities import execution_path, run_all
 
 def setup():
     # All of the paths used are relative, if we run the tests

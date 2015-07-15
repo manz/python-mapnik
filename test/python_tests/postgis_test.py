@@ -4,7 +4,7 @@ from __future__ import print_function
 
 from nose.tools import eq_,raises
 import atexit
-from utilities import execution_path, run_all
+from .utilities import execution_path, run_all
 from subprocess import Popen, PIPE
 import os, mapnik
 import threading
@@ -292,7 +292,7 @@ if 'postgis' in mapnik.DatasourceCache.plugin_names() \
                                 max_size=20,
                                 geometry_field='geom',
                                 user="rolethatdoesnotexist")
-        except Exception, e:
+        except Exception as e:
             assert 'role "rolethatdoesnotexist" does not exist' in str(e)
 
     def test_empty_db():
@@ -650,7 +650,7 @@ if 'postgis' in mapnik.DatasourceCache.plugin_names() \
                                 table='asdfasdfasdfasdfasdf',
                                 max_size=20)
             ds.all_features()
-        except Exception, e:
+        except Exception as e:
             eq_('in executeQuery' in str(e),True)
 
     def test_threaded_create2(NUM_THREADS=10):
@@ -811,7 +811,7 @@ if 'postgis' in mapnik.DatasourceCache.plugin_names() \
     def test_exception_message_reporting():
         try:
             mapnik.PostGIS(dbname=MAPNIK_TEST_DBNAME,table='doesnotexist')
-        except Exception, e:
+        except Exception as e:
             eq_(e.message != 'unidentifiable C++ exception', True)
 
     def test_null_id_field():
@@ -856,7 +856,7 @@ if 'postgis' in mapnik.DatasourceCache.plugin_names() \
             fs = ds_bad.featureset()
             for feature in fs:
                 pass
-        except RuntimeError, e:
+        except RuntimeError as e:
             assert 'invalid input syntax for integer' in str(e)
             failed = True
 
@@ -920,7 +920,7 @@ if 'postgis' in mapnik.DatasourceCache.plugin_names() \
             mapnik.render_to_file(map1,'/tmp/mapnik-postgis-test-map1.png', 'png')
             # Test must fail if error was not raised just above
             eq_(False,True)
-        except RuntimeError, e:
+        except RuntimeError as e:
             assert 'invalid input syntax for integer' in str(e)
             pass
         # This used to raise an exception before correction of issue 2042

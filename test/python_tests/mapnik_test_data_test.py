@@ -3,7 +3,7 @@
 
 from __future__ import print_function
 
-from utilities import execution_path, run_all
+from .utilities import execution_path, run_all
 import os, mapnik
 from glob import glob
 
@@ -43,7 +43,7 @@ def test_opening_data():
                     kwargs['layer_by_index'] = 0
                     try:
                         mapnik.Datasource(**kwargs)
-                    except Exception, e:
+                    except Exception as e:
                         print('could not open, %s: %s' % (kwargs,e))
                 else:
                    for plugin in plugin_mapping[ext]:
@@ -52,7 +52,7 @@ def test_opening_data():
                           kwargs['layer_by_index'] = 0
                       try:
                           mapnik.Datasource(**kwargs)
-                      except Exception, e:
+                      except Exception as e:
                           print('could not open, %s: %s' % (kwargs,e))
             #else:
             #    print('skipping opening %s' % filepath)

@@ -1,6 +1,6 @@
 #encoding: utf8
 import mapnik
-from utilities import run_all
+from .utilities import run_all
 from nose.tools import eq_
 
 def test_add_feature():

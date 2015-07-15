@@ -2,7 +2,7 @@
 
 from nose.tools import eq_
 import mapnik
-from utilities import run_all
+from .utilities import run_all
 try:
     import json
 except ImportError:

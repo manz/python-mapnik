@@ -4,7 +4,7 @@
 from nose.tools import eq_,raises
 import tempfile
 import os, mapnik
-from utilities import execution_path, run_all
+from .utilities import execution_path, run_all
 
 def setup():
     # All of the paths used are relative, if we run the tests
@@ -110,7 +110,7 @@ def test_render_from_serialization():
 
         im,im2 = get_paired_images(100,100,'../data/good_maps/polygon_symbolizer.xml')
         eq_(im.tostring('png32'),im2.tostring('png32'))
-    except RuntimeError, e:
+    except RuntimeError as e:
         # only test datasources that we have installed
         if not 'Could not create datasource' in str(e):
             raise RuntimeError(e)

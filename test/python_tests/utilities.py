@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+from six.moves import range
 from nose.plugins.errorclass import ErrorClass, ErrorClassPlugin
 from nose.tools import assert_almost_equal
 
@@ -38,7 +38,7 @@ def contains_word(word, bytestring_):
     """
     n = len(word)
     assert len(bytestring_)%n == 0, "len(bytestring_) not multiple of len(word)"
-    chunks = [bytestring_[i:i+n] for i in xrange(0, len(bytestring_), n)]
+    chunks = [bytestring_[i:i+n] for i in range(0, len(bytestring_), n)]
     return word in chunks
 
 def pixel2channels(pixel):

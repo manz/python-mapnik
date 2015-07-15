@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from nose.tools import eq_
-from utilities import execution_path, run_all
+from .utilities import execution_path, run_all
 
 import os, glob, mapnik
 
@@ -50,7 +50,7 @@ def test_can_parse_xml_with_deprecated_properties():
             mapnik.load_map(m, filename, strict)
             base_path = os.path.dirname(filename)
             mapnik.load_map_from_string(m,open(filename,'rb').read(),strict,base_path)
-        except RuntimeError, e:
+        except RuntimeError as e:
             # only test datasources that we have installed
             if not 'Could not create datasource' in str(e) \
                and not 'could not connect' in str(e):
@@ -70,7 +70,7 @@ def test_good_files():
             mapnik.load_map(m, filename, strict)
             base_path = os.path.dirname(filename)
             mapnik.load_map_from_string(m,open(filename,'rb').read(),strict,base_path)
-        except RuntimeError, e:
+        except RuntimeError as e:
             # only test datasources that we have installed
             if not 'Could not create datasource' in str(e) \
                and not 'could not connect' in str(e):

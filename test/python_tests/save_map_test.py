@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from nose.tools import eq_
-from utilities import execution_path, run_all
+from .utilities import execution_path, run_all
 import tempfile
 
 import os, glob, mapnik
@@ -24,7 +24,7 @@ def compare_map(xml):
     absolute_base = os.path.abspath(os.path.dirname(xml))
     try:
         mapnik.load_map(m, xml, False, absolute_base)
-    except RuntimeError, e:
+    except RuntimeError as e:
         # only test datasources that we have installed
         if not 'Could not create datasource' in str(e) \
            and not 'could not connect' in str(e):
@@ -43,7 +43,7 @@ def compare_map(xml):
     diff = ' diff -u %s %s' % (os.path.abspath(test_map),os.path.abspath(test_map2))
     try:
         eq_(open(test_map).read(),open(test_map2).read())
-    except AssertionError, e:
+    except AssertionError as e:
         raise AssertionError('serialized map "%s" not the same after being reloaded, \ncompare with command:\n\n$%s' % (xml,diff))
 
     if os.path.exists(test_map):

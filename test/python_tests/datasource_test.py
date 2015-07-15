@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
 from __future__ import print_function
+from six.moves import range
 
 from nose.tools import eq_, raises
-from utilities import execution_path, run_all
+from .utilities import execution_path, run_all
 import os, mapnik
 from itertools import groupby
 
@@ -37,7 +38,7 @@ def test_vrt_referring_to_missing_files():
 
         # Fancy stuff to supress output of error
         # open 2 fds
-        null_fds = [os.open(os.devnull, os.O_RDWR) for x in xrange(2)]
+        null_fds = [os.open(os.devnull, os.O_RDWR) for x in range(2)]
         # save the current file descriptors to a tuple
         save = os.dup(1), os.dup(2)
         # put /dev/null fds on 1 and 2
@@ -159,7 +160,7 @@ def test_hit_grid():
         hit_list = '|'.join(rle_encode(fg))
         eq_(hit_list[:16],'730:|2:Greenland')
         eq_(hit_list[-12:],'1:Chile|812:')
-    except RuntimeError, e:
+    except RuntimeError as e:
         # only test datasources that we have installed
         if not 'Could not create datasource' in str(e):
             raise RuntimeError(str(e))

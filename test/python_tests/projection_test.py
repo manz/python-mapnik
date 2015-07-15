@@ -1,10 +1,11 @@
 #!/usr/bin/env python
+from six.moves import range
 
 from nose.tools import eq_,assert_almost_equal
 
 import mapnik
 import math
-from utilities import run_all, assert_box2d_almost_equal
+from .utilities import run_all, assert_box2d_almost_equal
 
 # Tests that exercise map projections.
 
@@ -84,8 +85,8 @@ def test_proj_transform_between_init_and_literal():
     dest = mapnik.Projection(merc)
     tr2 = mapnik.ProjTransform(src,dest)
     tr2b = mapnik.ProjTransform(dest,src)
-    for x in xrange(-180,180,10):
-        for y in xrange(-60,60,10):
+    for x in range(-180,180,10):
+        for y in range(-60,60,10):
             coord = mapnik.Coord(x,y)
             merc_coord1 = tr1.forward(coord)
             merc_coord2 = tr1b.backward(coord)

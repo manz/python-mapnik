@@ -3,7 +3,7 @@
 
 import os, mapnik
 from nose.tools import eq_,raises, assert_almost_equal
-from utilities import execution_path, run_all, get_unique_colors
+from .utilities import execution_path, run_all, get_unique_colors
 
 def setup():
     # All of the paths used are relative, if we run the tests

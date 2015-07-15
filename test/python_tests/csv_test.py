@@ -5,7 +5,7 @@ from __future__ import print_function
 
 import glob
 from nose.tools import eq_,raises
-from utilities import execution_path
+from .utilities import execution_path
 
 import os, mapnik
 
@@ -52,7 +52,7 @@ if 'csv' in mapnik.DatasourceCache.plugin_names():
                 try:
                     mapnik.Datasource(type='csv',file=csv)
                     print('\x1b[1;32m✓ \x1b[0m', csv)
-                except Exception, e:
+                except Exception as e:
                     print('\x1b[33mfailed: should not have thrown\x1b[0m',csv,str(e))
 
     def test_lon_lat_detection(**kwargs):

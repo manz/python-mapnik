@@ -5,7 +5,7 @@ from __future__ import print_function
 
 import os, mapnik
 from nose.tools import eq_
-from utilities import execution_path, run_all
+from .utilities import execution_path, run_all
 
 def setup():
     # All of the paths used are relative, if we run the tests

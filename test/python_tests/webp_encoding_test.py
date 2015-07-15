@@ -5,7 +5,7 @@ from __future__ import print_function
 
 import os, mapnik
 from nose.tools import raises,eq_
-from utilities import execution_path, run_all
+from .utilities import execution_path, run_all
 
 def setup():
     # All of the paths used are relative, if we run the tests
@@ -123,7 +123,7 @@ if mapnik.has_webp():
                     fails.append('%s (actual) not == to %s (expected)' % (actual,expected))
             # disabled to avoid failures on ubuntu when using old webp packages
             #eq_(fails,[],'\n'+'\n'.join(fails))
-        except RuntimeError, e:
+        except RuntimeError as e:
             print(e)
 
     def test_transparency_levels():
@@ -157,7 +157,7 @@ if mapnik.has_webp():
                 print('warning, cannot open webp expected image (your libwebp is likely too old)')
                 return
             eq_(t0_len,len(expected_bytes))
-        except RuntimeError, e:
+        except RuntimeError as e:
             print(e)
 
 

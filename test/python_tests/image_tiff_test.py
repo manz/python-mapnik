@@ -4,7 +4,7 @@
 import os, mapnik
 import hashlib
 from nose.tools import eq_, assert_not_equal
-from utilities import execution_path, run_all
+from .utilities import execution_path, run_all
 
 def hashstr(var):
     return hashlib.md5(var).hexdigest()
@@ -118,7 +118,7 @@ def test_tiff_round_trip_buffered_tiled():
     eq_(c2.b, 64)
     eq_(c2.a, 128)
     eq_(c2.get_premultiplied(), True)
-    im3 = mapnik.Image.fromstring(open(filepath,'r').read())
+    im3 = mapnik.Image.fromstring(open(filepath,'rb').read())
     im2.save(filepath2, 'tiff:method=tiled:tile_width=32:tile_height=32')
     im3.save(filepath3, 'tiff:method=tiled:tile_width=32:tile_height=32')
     eq_(im.width(),im2.width())

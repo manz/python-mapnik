@@ -2,7 +2,7 @@
 from __future__ import print_function
 
 from nose.tools import eq_, raises
-from utilities import execution_path, run_all
+from .utilities import execution_path, run_all
 import os
 import mapnik
 

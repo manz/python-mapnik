@@ -2,8 +2,8 @@
 from __future__ import print_function
 
 from nose.tools import eq_
-from utilities import execution_path, run_all
-from utilities import side_by_side_image
+from .utilities import execution_path, run_all
+from .utilities import side_by_side_image
 import os, mapnik
 import re
 

@@ -4,8 +4,8 @@ from __future__ import print_function
 
 from nose.tools import eq_
 import os
-from utilities import execution_path, run_all
-from utilities import get_unique_colors, pixel2channels, side_by_side_image
+from .utilities import execution_path, run_all
+from .utilities import get_unique_colors, pixel2channels, side_by_side_image
 import mapnik
 
 def setup():
